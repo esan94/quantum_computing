@@ -1,3 +1,6 @@
+import numpy as np
+
+
 def numbertobin(number):
     """Transform numbers to binary notation.
     
@@ -43,3 +46,32 @@ def bintonumber(bin_number):
     """
     
     return sum([int(bit) * 2 ** idx for idx, bit in enumerate(bin_number[::-1])])
+
+
+def sphericaltocartesian(radius, theta, psi):
+    """Change of coordinate base.
+    
+    Change from an spherical base to cartesian coordinates.
+
+    Parameters
+    ----------
+    radius : float
+        Lenght of the vector.
+    
+    theta : float
+        Angle from z-axis to vector.
+    
+    psi : float
+        Angle from x-axis to the proyection of the vector in plane x-y.
+
+    Returns
+    -------
+    tuple(float, float, float)
+        Transformed coordinates into cartesians (x, y, z).
+
+    """
+    
+    x = radius * np.sin(psi) * np.cos(theta)
+    y = radius * np.sin(psi) * np.sin(theta)
+    z = radius * np.cos(psi)
+    return x, y, x
